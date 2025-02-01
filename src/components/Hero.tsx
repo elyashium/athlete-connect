@@ -1,14 +1,18 @@
 // components/Hero.tsx
 import { useNavigate } from 'react-router-dom';
+import Bg from './Bg';
 
 export default function Hero() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-black flex flex-col">
+        <div className=" h-24 min-h-screen bg-black flex flex-col">
             {/* First Page: Title and Get Started Button */}
-            <div className="flex-grow flex flex-col items-center justify-center py-20">
-                <div className="text-center">
+            <div className=" relative flex-grow flex flex-col items-center justify-center py-20">
+                <div className="absolute left-15 top-0">
+                    <Bg />
+                </div>
+                <div className=" relative text-center">
                     <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">ATHLETE</div>
                     <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">CONNECT</div>
                     <p className="text-xl text-white mb-8">
@@ -24,7 +28,7 @@ export default function Hero() {
             </div>
 
             {/* Mock Profiles Section */}
-            <div className="w-full max-w-4xl mx-auto px-4 py-16">
+            <div className=" relative w-full max-w-4xl mx-auto px-4 py-16">
                 <h2 className="text-3xl font-bold text-[var(--neon-green)] text-center mb-8">Featured Profiles</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Profile 1 */}
