@@ -1,5 +1,5 @@
-import React from 'react';
-import { ThumbsUp, MessageCircle, Share2, Award } from 'lucide-react';
+
+import { ThumbsUp, MessageCircle, Share2 } from 'lucide-react';
 
 interface Post {
   id: string;
@@ -14,15 +14,28 @@ interface Post {
   comments: number;
   shares: number;
   timestamp: string;
+  tags?: string[];
+  reactions?: {
+    like: number;
+    love: number;
+    laugh: number;
+  };
 }
 
 interface FeedPostProps {
   post: Post;
 }
 
+
+
+
+
 export default function FeedPost({ post }: FeedPostProps) {
+
+
+  
   return (
-    <div className="bg-gray-900 rounded-xl p-6">
+    <div className="bg-gray-900 rounded-xl p-6 mb-4">
       <div className="flex items-start gap-4 mb-4">
         <img
           src={post.author.avatar}
@@ -44,6 +57,16 @@ export default function FeedPost({ post }: FeedPostProps) {
           alt="Post content"
           className="w-full h-64 object-cover rounded-lg mb-4"
         />
+      )}
+
+      {post.tags && (
+        <div className="flex gap-2 mb-4">
+          {post.tags.map((tag, index) => (
+            <span key={index} className="bg-gray-800 text-gray-400 px-2 py-1 rounded-lg text-sm">
+              #{tag}
+            </span>
+          ))}
+        </div>
       )}
 
       <div className="flex items-center justify-between text-sm text-gray-400 mb-4">

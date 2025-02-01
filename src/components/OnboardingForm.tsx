@@ -122,7 +122,7 @@ export default function OnboardingForm() {
                 }}
                 className="p-6 rounded-xl border-2 hover:bg-gray-700 transition-all duration-300"
               >
-                <div className='w-12 h-12 mx-auto mb-4'>
+                <div className='w-18 h-18 mx-auto mb-4'>
                   <Lottie animationData={trophy} loop={true} />
                 </div>
                 <span className="block text-lg font-semibold">Athlete</span>
@@ -134,7 +134,7 @@ export default function OnboardingForm() {
                 }}
                 className="p-6 rounded-xl border-2 hover:bg-gray-700 transition-all duration-300"
               >
-                <div className='w-12 h-12 mx-auto mb-4'>
+                <div className='w-18 h-18 mx-auto mb-4'>
                   <Lottie animationData={coach} loop={true} />
                 </div>
                 <span className="block text-lg font-semibold">Coach / Organization</span>
