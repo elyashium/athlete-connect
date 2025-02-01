@@ -1,6 +1,6 @@
 // components/Hero.tsx
 import { useNavigate } from 'react-router-dom';
-import Bg from './Bg';
+
 
 export default function Hero() {
     const navigate = useNavigate();
@@ -8,9 +8,7 @@ export default function Hero() {
         <div className="min-h-screen bg-black flex flex-col">
             {/* First Page: Title and Get Started Button */}
             <div className="relative flex-grow flex flex-col items-center justify-center py-20 md:py-60">
-                <div className="absolute left-60 md:left-20">
-                    <Bg />
-                </div>
+               
                 <div className="relative  right-60 md:right-20">
                     <div className="text-4xl md:text-6xl font-bold text-[var(--neon-green)] mb-4">ATHLETE</div>
                     <div className="text-4xl md:text-6xl font-bold text-[var(--neon-green)] mb-4">CONNECT</div>
