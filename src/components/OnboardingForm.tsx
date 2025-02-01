@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserType } from '../types';
 import { Trophy, Users, ArrowRight } from 'lucide-react';
 import Dashboard from './Dashboard';
+import { useNavigate } from 'react-router-dom';
 
 interface StoredUserData {
   userType: UserType;
@@ -13,6 +14,8 @@ interface StoredUserData {
 }
 
 export default function OnboardingForm() {
+  const navigate = useNavigate();
+
   const [userType, setUserType] = useState<UserType | null>(null);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -45,6 +48,7 @@ export default function OnboardingForm() {
   };
 
   const handleLogout = () => {
+
     localStorage.removeItem('athleteConnectUser');
     setIsLoggedIn(false);
     setUserType(null);
@@ -53,7 +57,8 @@ export default function OnboardingForm() {
       password: '',
       name: '',
     });
-    setStep(1);
+    navigate('/');
+    // setStep(1);
   };
 
   if (isLoggedIn) {
@@ -72,8 +77,8 @@ export default function OnboardingForm() {
                 setStep(2);
               }}
               className={`p-6 rounded-xl border-2 transition-all duration-300 ${userType === 'athlete'
-                  ? 'neon-border bg-[var(--neon-green)] bg-opacity-10'
-                  : 'border-gray-700 hover:neon-border'
+                ? 'neon-border bg-[var(--neon-green)] bg-opacity-10'
+                : 'border-gray-700 hover:neon-border'
                 }`}
             >
               <Trophy className="w-12 h-12 mx-auto mb-4" />
@@ -85,8 +90,8 @@ export default function OnboardingForm() {
                 setStep(2);
               }}
               className={`p-6 rounded-xl border-2 transition-all duration-300 ${userType === 'organization'
-                  ? 'neon-border bg-[var(--neon-green)] bg-opacity-10'
-                  : 'border-gray-700 hover:neon-border'
+                ? 'neon-border bg-[var(--neon-green)] bg-opacity-10'
+                : 'border-gray-700 hover:neon-border'
                 }`}
             >
               <Users className="w-12 h-12 mx-auto mb-4" />
@@ -100,6 +105,7 @@ export default function OnboardingForm() {
             <h2 className="text-3xl font-bold text-center neon-text mb-8">
               Create Your Account
             </h2>
+
             <div className="space-y-4">
               <input
                 type="text"
