@@ -9,7 +9,7 @@ export default function Hero() {
             {/* First Page: Title and Get Started Button */}
             <div className="relative flex-grow flex flex-col items-center justify-center py-20 md:py-60">
                
-                <div className="relative  right-60 md:right-20">
+                <div className="relative right-60">
                     <div className="text-4xl md:text-6xl font-bold text-[var(--neon-green)] mb-4">ATHLETE</div>
                     <div className="text-4xl md:text-6xl font-bold text-[var(--neon-green)] mb-4">CONNECT</div>
                     <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto">
@@ -17,9 +17,9 @@ export default function Hero() {
                     </p>
                     <button
                         onClick={() => navigate('/onboarding')}
-                        className="bg-[var(--neon-green)] text-black font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition-all"
+                        className="bg-[var(--neon-green)] text-black font-bold py-2 px-6 rounded-full hover:bg-black hover:text-[var(--neon-green)] hover:bg-opacity-90 transition-all duration-200"
                     >
-                        Get Started
+                        Login / Sign Up
                     </button>
                 </div>
             </div>
