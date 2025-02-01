@@ -6,13 +6,13 @@ export default function Hero() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-black flex flex-col">
+        <div className=" h-24 min-h-screen bg-black flex flex-col">
             {/* First Page: Title and Get Started Button */}
             <div className=" relative flex-grow flex flex-col items-center justify-center py-60">
-                <div className="absolute left-20">
+                <div className="absolute left-100">
                     <Bg/>
                 </div>
-                <div className=" relative ">
+                <div className=" relative text-center">
                     <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">ATHLETE</div>
                     <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">CONNECT</div>
                     <p className="text-xl text-white mb-8">
