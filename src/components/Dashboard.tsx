@@ -138,7 +138,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                 </button>
                 <div className="flex items-center gap-3">
                   <img
-                  onClick={() => navigate(`/profile/${profile.id}`)}
+                  // onClick={() => navigate(`/profile/${profile.id}`)}
                     src={mockProfile.avatar}
                     alt="Profile"
                     className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"

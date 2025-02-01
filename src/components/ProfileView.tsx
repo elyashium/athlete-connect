@@ -7,7 +7,7 @@ interface ProfileViewProps {
 }
 
 export default function ProfileView({ profiles }: ProfileViewProps) {
-    const { id } = useParams();
+    const { id } = useParams<{ id: string }>();
     const profile = profiles.find((p) => p.id === id);
 
     if (!profile) {

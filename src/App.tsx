@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/onboarding" element={<OnboardingForm />} />
-        <Route path="*" element={<div>404 Not Found</div>} />
+        {/* <Route path="*" element={<div>404 Not Found</div>} /> */}
         <Route path="/profile/:id" element={<ProfileView />} />
       </Routes>
     </Router>
