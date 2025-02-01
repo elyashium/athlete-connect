@@ -19,42 +19,43 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
   const [activeTab, setActiveTab] = useState<'feed' | 'network' | 'jobs' | 'achievements'>('feed');
 
   // Mock data for demonstration
+  // Mock data for demonstration
   const mockProfile = {
     id: '1',
     type: 'athlete' as UserType,
     name: userData.name,
     email: userData.email,
     avatar: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
-    sports: ['Basketball', 'Track & Field'],
+    sports: ['Cricket', 'Kabaddi'],
     achievements: [
       {
         id: '1',
-        title: 'State Championship Gold',
+        title: 'Ranji Trophy Winner',
         date: '2024',
-        description: 'Won gold medal in state basketball championship',
+        description: 'Led the team to victory in the Ranji Trophy final.',
         medal: 'gold' as const,
       },
       {
         id: '2',
-        title: 'Regional MVP',
+        title: 'Pro Kabaddi League MVP',
         date: '2023',
-        description: 'Named Most Valuable Player in regional tournament',
+        description: 'Awarded Most Valuable Player in Pro Kabaddi League.',
       },
       {
         id: '3',
-        title: 'Track Record',
+        title: 'Fastest Century in U-19',
         date: '2023',
-        description: 'Set new school record in 100m sprint',
+        description: 'Scored a century in just 42 balls in U-19 Cricket League.',
         medal: 'gold' as const,
       },
     ],
     stats: {
-      'Games Played': '156',
-      'Win Rate': '78%',
-      'Achievements': '12',
+      'Matches Played': '120',
+      'Win Rate': '82%',
+      'Achievements': '15',
     },
-    bio: 'Professional athlete with a passion for excellence',
-    location: 'New York, USA',
+    bio: 'Aspiring cricketer with a passion for excellence and a dream to play for India.',
+    location: 'Mumbai, Maharashtra',
     fundingCampaigns: [],
   };
 
@@ -62,31 +63,46 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
     {
       id: '1',
       author: {
-        name: 'Sarah Johnson',
-        title: 'Olympic Swimmer',
+        name: 'Virat Sharma',
+        title: 'Cricketer - Delhi Capitals',
         avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80',
       },
-      content: 'Excited to announce my partnership with SportsTech Inc! Looking forward to using their advanced training analytics to improve my performance. #Swimming #Technology #Sports',
+      content: 'Thrilled to be part of Delhi Capitals for this IPL season! Looking forward to showcasing my skills on the field. #IPL #DelhiCapitals #Cricket',
       image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&q=80',
-      likes: 234,
-      comments: 45,
-      shares: 12,
+      likes: 532,
+      comments: 89,
+      shares: 23,
       timestamp: '2h ago',
     },
     {
       id: '2',
       author: {
-        name: 'Michael Chen',
-        title: 'Basketball Coach',
+        name: 'Ajay Deshmukh',
+        title: 'Kabaddi Coach - U Mumba',
         avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80',
       },
-      content: 'Looking for talented basketball players for our upcoming season. Full scholarships available for qualifying athletes. DM for details. #Basketball #Recruitment #Sports',
-      likes: 156,
-      comments: 28,
-      shares: 89,
+      content: 'Looking for young and talented raiders for our Pro Kabaddi League team. Trials happening in Mumbai this weekend. DM for details! #Kabaddi #ProKabaddiLeague #U-Mumba',
+      likes: 289,
+      comments: 64,
+      shares: 48,
       timestamp: '4h ago',
     },
+    {
+      id: '3',
+      author: {
+        name: 'Sneha Reddy',
+        title: 'Athlete - Track & Field',
+        avatar: 'https://images.unsplash.com/photo-1490135900371-3476360c1e9b?auto=format&fit=crop&q=80',
+      },
+      content: 'Excited to represent India in the Asian Games 2024! Training hard every day to bring home the gold. #AsianGames #TrackAndField #IndiaProud',
+      image: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&q=80',
+      likes: 421,
+      comments: 72,
+      shares: 15,
+      timestamp: '6h ago',
+    },
   ];
+
 
   const navigate = useNavigate();
 
@@ -138,7 +154,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                 </button>
                 <div className="flex items-center gap-3">
                   <img
-                  // onClick={() => navigate(`/profile/${profile.id}`)}
+                    // onClick={() => navigate(`/profile/${profile.id}`)}
                     src={mockProfile.avatar}
                     alt="Profile"
                     className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"
