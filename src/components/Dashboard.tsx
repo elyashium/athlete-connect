@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { UserType } from '../types';
 import ProfileCard from './ProfileCard';
 import { Plus, Search, Bell, LogOut, MessageSquare, Users2, Briefcase, Award, TrendingUp, Share2, ThumbsUp, MessageCircle } from 'lucide-react';
@@ -16,7 +16,7 @@ interface DashboardProps {
 
 export default function Dashboard({ userType, userData, onLogout }: DashboardProps) {
   const [activeTab, setActiveTab] = useState<'feed' | 'network' | 'jobs' | 'achievements'>('feed');
-  
+
   // Mock data for demonstration
   const mockProfile = {
     id: '1',
@@ -139,7 +139,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                     alt="Profile"
                     className="w-8 h-8 rounded-full border border-gray-700"
                   />
-                  <button 
+                  <button
                     onClick={onLogout}
                     className="text-gray-400 hover:text-white"
                     title="Logout"

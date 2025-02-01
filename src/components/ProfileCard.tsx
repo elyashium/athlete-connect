@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { AthleteProfile } from '../types';
 import { Medal, MapPin, Trophy } from 'lucide-react';
 
@@ -8,7 +8,7 @@ interface ProfileCardProps {
 
 export default function ProfileCard({ profile }: ProfileCardProps) {
   return (
-    <div className="w-full max-w-xl bg-gray-900 rounded-xl overflow-hidden neon-border">
+    <div className="w-full max-w-xl bg-gray-900 rounded-xl overflow-hidden">
       <div 
         className="h-32 bg-cover bg-center"
         style={{ 
@@ -51,7 +51,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
 
         <div className="mt-6 grid grid-cols-3 gap-4">
           {Object.entries(profile.stats).map(([key, value]) => (
-            <div key={key} className="text-center p-3 rounded-lg bg-black neon-border">
+            <div key={key} className="text-center p-3 rounded-lg bg-black">
               <p className="text-lg font-bold">{value}</p>
               <p className="text-sm text-gray-400">{key}</p>
             </div>
