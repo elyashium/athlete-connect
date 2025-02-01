@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { UserType } from '../types';
-import { Trophy, Users, ArrowRight, AlertCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Dashboard from './Dashboard';
 import { useNavigate } from 'react-router-dom';
+
+import Lottie from 'lottie-react';
+import trophy from "../media/trophy.json";
+import coach from "../media/coach.json";
 
 interface StoredUserData {
   userType: UserType;
@@ -103,11 +107,13 @@ export default function OnboardingForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white px-6">
+    <div className="min-h-screen flex items-center justify-center bg-black text-white px-6">
       <div className="max-w-lg w-full bg-gray-800 p-8 rounded-xl shadow-lg">
         {step === 1 ? (
           <div className="space-y-6 text-center">
             <h2 className="text-3xl font-bold neon-text">Choose Your Path</h2>
+
+
             <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={() => {
@@ -116,7 +122,9 @@ export default function OnboardingForm() {
                 }}
                 className="p-6 rounded-xl border-2 hover:bg-gray-700 transition-all duration-300"
               >
-                <Trophy className="w-12 h-12 mx-auto mb-4" />
+                <div className='w-12 h-12 mx-auto mb-4'>
+                  <Lottie animationData={trophy} loop={true} />
+                </div>
                 <span className="block text-lg font-semibold">Athlete</span>
               </button>
               <button
@@ -126,7 +134,9 @@ export default function OnboardingForm() {
                 }}
                 className="p-6 rounded-xl border-2 hover:bg-gray-700 transition-all duration-300"
               >
-                <Users className="w-12 h-12 mx-auto mb-4" />
+                <div className='w-12 h-12 mx-auto mb-4'>
+                  <Lottie animationData={coach} loop={true} />
+                </div>
                 <span className="block text-lg font-semibold">Coach / Organization</span>
               </button>
             </div>
