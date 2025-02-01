@@ -4,6 +4,7 @@ import ProfileCard from './ProfileCard';
 import { Plus, Search, Bell, LogOut, MessageSquare, Users2, Briefcase, Award, TrendingUp, Share2, ThumbsUp, MessageCircle } from 'lucide-react';
 import NetworkSuggestions from './NetworkSuggestions';
 import FeedPost from './FeedPost';
+import { useNavigate } from 'react-router-dom';
 
 interface DashboardProps {
   userType: UserType;
@@ -87,6 +88,8 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
     },
   ];
 
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-black">
       {/* Navigation */}
@@ -135,9 +138,10 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                 </button>
                 <div className="flex items-center gap-3">
                   <img
+                  onClick={() => navigate(`/profile/${profile.id}`)}
                     src={mockProfile.avatar}
                     alt="Profile"
-                    className="w-8 h-8 rounded-full border border-gray-700"
+                    className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"
                   />
                   <button
                     onClick={onLogout}

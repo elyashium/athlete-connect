@@ -41,7 +41,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
         {/* Stats */}
         <div className="mt-4 grid grid-cols-3 gap-4">
           {Object.entries(profile.stats).map(([key, value]) => (
-            <div key={key} className="text-center p-3 rounded-lg bg-gray-800">
+            <div key={key} className="text-center p-3  break-words rounded-lg bg-gray-800">
               <p className="text-lg font-bold">{value}</p>
               <p className="text-xs text-gray-400">{key}</p>
             </div>
