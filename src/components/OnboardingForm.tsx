@@ -71,11 +71,10 @@ export default function OnboardingForm() {
                 setUserType('athlete');
                 setStep(2);
               }}
-              className={`p-6 rounded-xl border-2 transition-all duration-300 ${
-                userType === 'athlete'
+              className={`p-6 rounded-xl border-2 transition-all duration-300 ${userType === 'athlete'
                   ? 'neon-border bg-[var(--neon-green)] bg-opacity-10'
                   : 'border-gray-700 hover:neon-border'
-              }`}
+                }`}
             >
               <Trophy className="w-12 h-12 mx-auto mb-4" />
               <span className="block text-lg font-semibold">Athlete</span>
@@ -85,11 +84,10 @@ export default function OnboardingForm() {
                 setUserType('organization');
                 setStep(2);
               }}
-              className={`p-6 rounded-xl border-2 transition-all duration-300 ${
-                userType === 'organization'
+              className={`p-6 rounded-xl border-2 transition-all duration-300 ${userType === 'organization'
                   ? 'neon-border bg-[var(--neon-green)] bg-opacity-10'
                   : 'border-gray-700 hover:neon-border'
-              }`}
+                }`}
             >
               <Users className="w-12 h-12 mx-auto mb-4" />
               <span className="block text-lg font-semibold">Organization</span>
