@@ -5,24 +5,26 @@ export default function Hero() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-black flex flex-col items-center justify-center py-12 px-4">
-            {/* Main Title and Description */}
-            <div className="text-center mb-16">
-                <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">ATHLETE</div>
-                <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">CONNECT</div>
-                <p className="text-xl text-white mb-8">
-                    Your ultimate platform for connecting athletes and coaches. Train smarter, perform better, and achieve greatness together.
-                </p>
-                <button
-                    onClick={() => navigate('/onboarding')}
-                    className="bg-[var(--neon-green)] text-black font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition-all"
-                >
-                    Get Started
-                </button>
+        <div className="min-h-screen bg-black flex flex-col">
+            {/* First Page: Title and Get Started Button */}
+            <div className="flex-grow flex flex-col items-center justify-center py-20">
+                <div className="text-center">
+                    <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">ATHLETE</div>
+                    <div className="text-6xl font-bold text-[var(--neon-green)] mb-4">CONNECT</div>
+                    <p className="text-xl text-white mb-8">
+                        Your ultimate platform for connecting athletes and coaches. Train smarter, perform better, and achieve greatness together.
+                    </p>
+                    <button
+                        onClick={() => navigate('/onboarding')}
+                        className="bg-[var(--neon-green)] text-black font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition-all"
+                    >
+                        Get Started
+                    </button>
+                </div>
             </div>
 
             {/* Mock Profiles Section */}
-            <div className="w-full max-w-4xl mb-16">
+            <div className="w-full max-w-4xl mx-auto px-4 py-16">
                 <h2 className="text-3xl font-bold text-[var(--neon-green)] text-center mb-8">Featured Profiles</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Profile 1 */}
@@ -70,7 +72,7 @@ export default function Hero() {
             </div>
 
             {/* User Reviews Section */}
-            <div className="w-full max-w-4xl">
+            <div className="w-full max-w-4xl mx-auto px-4 py-16">
                 <h2 className="text-3xl font-bold text-[var(--neon-green)] text-center mb-8">What Our Users Say</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Review 1 */}
