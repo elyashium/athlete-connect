@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
     const navigate = useNavigate();
+
+
+
     return (
         <div className="min-h-screen bg-black flex flex-col">
             {/* First Page: Title and Get Started Button */}
@@ -28,12 +31,12 @@ export default function Hero() {
 
             {/* Mock Profiles Section */}
             <div className="relative w-full max-w-6xl mx-auto px-4 py-16">
-                <h2 className="text-3xl font-bold text-[var(--neon-green)] text-center mb-8">
+                <h2 className="text-2xl font-bold text-[var(--neon-green)] text-center mb-16">
                     Featured Profiles
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     {/* Profile 1 */}
-                    <div className="bg-gray-800 p-6 rounded-lg text-center hover:scale-105 transition-transform">
+                    <div className="p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
                             src="https://via.placeholder.com/100"
                             alt="Profile"
@@ -47,7 +50,7 @@ export default function Hero() {
                     </div>
 
                     {/* Profile 2 */}
-                    <div className="bg-gray-800 p-6 rounded-lg text-center hover:scale-105 transition-transform">
+                    <div className="p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
                             src="https://via.placeholder.com/100"
                             alt="Profile"
@@ -61,7 +64,7 @@ export default function Hero() {
                     </div>
 
                     {/* Profile 3 */}
-                    <div className="bg-gray-800 p-6 rounded-lg text-center hover:scale-105 transition-transform">
+                    <div className="p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
                             src="https://via.placeholder.com/100"
                             alt="Profile"
@@ -75,7 +78,7 @@ export default function Hero() {
                     </div>
 
                     {/* Profile 4 */}
-                    <div className="bg-gray-800 p-6 rounded-lg text-center hover:scale-105 transition-transform">
+                    <div className=" p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
                             src="https://via.placeholder.com/100"
                             alt="Profile"
@@ -92,12 +95,12 @@ export default function Hero() {
 
             {/* User Reviews Section */}
             <div className="w-full max-w-6xl mx-auto px-4 py-16">
-                <h2 className="text-3xl font-bold text-[var(--neon-green)] text-center mb-8">
+                <h2 className="text-2xl font-bold text-[var(--neon-green)] text-center mb-16">
                     What Our Users Say
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Review 1 */}
-                    <div className="bg-gray-800 p-6 rounded-lg hover:scale-105 transition-transform">
+                    <div className=" p-6 rounded-lg hover:bg-gray-800 hover:scale-105 transition-transform ">
                         <p className="text-gray-300 italic">
                             "Athlete Connect is the best platform I’ve used to find coaching opportunities. The community is amazing!"
                         </p>
@@ -105,7 +108,7 @@ export default function Hero() {
                     </div>
 
                     {/* Review 2 */}
-                    <div className="bg-gray-800 p-6 rounded-lg hover:scale-105 transition-transform">
+                    <div className="p-6 rounded-lg hover:bg-gray-800 hover:scale-105 transition-transform">
                         <p className="text-gray-300 italic">
                             "I’ve improved my performance significantly thanks to the personalized training plans and feedback."
                         </p>
@@ -113,7 +116,7 @@ export default function Hero() {
                     </div>
 
                     {/* Review 3 */}
-                    <div className="bg-gray-800 p-6 rounded-lg hover:scale-105 transition-transform">
+                    <div className="p-6 rounded-lg hover:bg-gray-800 hover:scale-105 transition-transform">
                         <p className="text-gray-300 italic">
                             "The analytics tools are incredible. They’ve helped me track my progress like never before."
                         </p>
