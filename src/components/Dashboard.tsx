@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { UserType } from '../types';
 import ProfileCard from './ProfileCard';
-import { Plus, Search, Bell, LogOut, MessageSquare, Users2, Briefcase, Award, TrendingUp, Share2, ThumbsUp, MessageCircle } from 'lucide-react';
+import { Plus, Search, Bell, LogOut, MessageSquare, Users2, Briefcase, Award, TrendingUp } from 'lucide-react';
 import NetworkSuggestions from './NetworkSuggestions';
 import FeedPost from './FeedPost';
 import { useNavigate } from 'react-router-dom';
 
 interface DashboardProps {
   userType: UserType;
-  userData: {
-    name: string;
-    email: string;
-  };
+  userData: any; // Match the formData type from App.tsx
   onLogout: () => void;
 }
 
@@ -22,9 +19,9 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
   // Mock data for demonstration
   const mockProfile = {
     id: '1',
-    type: 'athlete' as UserType,
-    name: userData.name,
-    email: userData.email,
+    type: userType,
+    name: userData.name || 'User Name',
+    email: userData.email || 'user@example.com',
     avatar: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
     sports: ['Cricket', 'Kabaddi'],
     achievements: [
