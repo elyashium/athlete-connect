@@ -1,11 +1,11 @@
 
 import { Trophy, Target, Share2, Box, Activity, Building2, Medal, Calendar, MessageSquare, Award, Briefcase, GraduationCap } from 'lucide-react';
-import ContributionGraph from './ContributionGraph';
-import WishlistSection from './WishlistSection';
-import EquipmentSection from './EquipmentSection';
-import PostsSection from './PostsSection';
-import SkillsSection from './SkillsSection';
-import AchievementsSection from './AchievementsSection';
+import ContributionGraph from './ContributionGraph.tsx';
+import WishlistSection from './WishlistSection.tsx';
+import EquipmentSection from './EquipmentSection.tsx';
+import PostsSection from './PostsSection.tsx';
+import SkillsSection from './SkillsSection.tsx';
+import AchievementsSection from './AchievementsSection.tsx';
 
 interface ProfileData {
     type: 'athlete' | 'organization';

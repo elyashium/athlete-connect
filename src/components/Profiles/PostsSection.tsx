@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { MessageSquare, Heart, Share2, Image } from 'lucide-react';
 
 interface Post {
