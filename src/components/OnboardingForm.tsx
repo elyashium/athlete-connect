@@ -108,7 +108,7 @@ export default function OnboardingForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-6">
-      <div className="max-w-lg w-full bg-gray-800 p-8 rounded-xl shadow-lg">
+      <div className="max-w-lg w-full p-8 shadow-lg">
         {step === 1 ? (
           <div className="space-y-6 text-center">
             <h2 className="text-3xl font-bold neon-text">Choose Your Path</h2>
@@ -120,7 +120,7 @@ export default function OnboardingForm() {
                   setUserType('athlete');
                   setStep(2);
                 }}
-                className="p-6 rounded-xl border-2 hover:bg-gray-700 transition-all duration-300"
+                className="p-6 rounded-xl hover:bg-gray-700 transition-all duration-300"
               >
                 <div className='w-18 h-18 mx-auto mb-4'>
                   <Lottie animationData={trophy} loop={true} />
@@ -132,7 +132,7 @@ export default function OnboardingForm() {
                   setUserType('organization');
                   setStep(2);
                 }}
-                className="p-6 rounded-xl border-2 hover:bg-gray-700 transition-all duration-300"
+                className="p-6 rounded-xl hover:bg-gray-700 transition-all duration-300"
               >
                 <div className='w-18 h-18 mx-auto mb-4'>
                   <Lottie animationData={coach} loop={true} />
