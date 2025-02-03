@@ -8,6 +8,7 @@ import SkillsSection from './SkillsSection.tsx';
 import AchievementsSection from './AchievementsSection.tsx';
 
 interface ProfileData {
+    id?: string;
     type: 'athlete' | 'organization';
     name: string;
     avatar: string;

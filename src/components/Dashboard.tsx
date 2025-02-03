@@ -6,6 +6,10 @@ import NetworkSuggestions from './NetworkSuggestions';
 import FeedPost from './FeedPost';
 import { useNavigate } from 'react-router-dom';
 
+
+
+
+
 interface DashboardProps {
   userType: UserType;
   userData: any; // Match the formData type from App.tsx
@@ -16,44 +20,48 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
   const [activeTab, setActiveTab] = useState<'feed' | 'network' | 'jobs' | 'achievements'>('feed');
 
   // Mock data for demonstration
-  // Mock data for demonstration
-  const mockProfile = {
+  const mockProfile: ProfileData = {
     id: '1',
     type: userType,
     name: userData.name || 'User Name',
-    email: userData.email || 'user@example.com',
     avatar: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
-    sports: ['Cricket', 'Kabaddi'],
-    achievements: [
-      {
-        id: '1',
-        title: 'Ranji Trophy Winner',
-        date: '2024',
-        description: 'Led the team to victory in the Ranji Trophy final.',
-        medal: 'gold' as const,
-      },
-      {
-        id: '2',
-        title: 'Pro Kabaddi League MVP',
-        date: '2023',
-        description: 'Awarded Most Valuable Player in Pro Kabaddi League.',
-      },
-      {
-        id: '3',
-        title: 'Fastest Century in U-19',
-        date: '2023',
-        description: 'Scored a century in just 42 balls in U-19 Cricket League.',
-        medal: 'gold' as const,
-      },
-    ],
-    stats: {
-      'Matches Played': '120',
-      'Win Rate': '82%',
-      'Achievements': '15',
-    },
+    coverImage: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80',
     bio: 'Aspiring cricketer with a passion for excellence and a dream to play for India.',
     location: 'Mumbai, Maharashtra',
-    fundingCampaigns: [],
+    title: userType === 'athlete' ? 'Professional Athlete' : 'Sports Organization',
+    education: [
+      {
+        school: 'Sports Academy',
+        degree: 'Diploma in Sports',
+        field: 'Cricket',
+        from: '2018',
+        to: '2020'
+      }
+    ],
+    experience: [
+      {
+        role: 'Team Player',
+        organization: 'State Cricket Team',
+        from: '2021',
+        to: 'Present',
+        description: 'Regular team member participating in state-level matches'
+      }
+    ],
+    achievements: [
+      {
+        title: 'State Championship Winner',
+        date: '2023',
+        organization: 'State Sports Association',
+        description: 'Won state-level cricket championship'
+      }
+    ],
+    skills: [
+      { name: 'Batting', endorsements: 25, category: 'Cricket' }
+    ],
+    posts: [],
+    wishlist: [],
+    equipment: [],
+    activityData: [[1, 4], [2, 3]]
   };
 
   const mockPosts = [
@@ -152,6 +160,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                 <div className="flex items-center gap-3">
                   <img
                     // onClick={() => navigate(`/profile/${profile.id}`)}
+                    onClick={() => navigate(`/profile/${mockProfile.id}`)}
                     src={mockProfile.avatar}
                     alt="Profile"
                     className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"
