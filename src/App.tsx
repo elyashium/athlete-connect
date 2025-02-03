@@ -2,7 +2,7 @@
 import OnboardingForm from './components/OnboardingForm';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
-import ProfileView from './components/ProfileView';
+import ProfileView from './components/Profiles/ProfileView';
 
 function App() {
   return (
