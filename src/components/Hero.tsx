@@ -12,54 +12,59 @@ export default function Hero() {
         <div className="min-h-screen bg-black flex flex-col">
             {/* First Page: Title and Get Started Button */}
             <div className="relative flex-grow flex flex-col items-center justify-center py-20 md:py-60">
-
-                <div className="relative right-60">
-                    <div className="text-4xl md:text-7xl font-chivo font-bold italic mb-4 gradient-text">ATHLETE</div>
-                    <div className="text-4xl md:text-7xl font-chivo font-bold italic mb-4 gradient-text">CONNECT</div>
-
-                    <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto">
-                        Your ultimate platform for connecting athletes and coaches. Train smarter, perform better, and achieve greatness together.
-                    </p>
-                    <motion.button
-                        onClick={() => navigate('/onboarding')}
-                        className="bg-[var(--neon-green)] text-black font-bold py-2 px-6 rounded-full overflow-hidden relative"
-                        whileHover="hover"
-                        variants={{
-                            hover: {
-                                scale: 1.02,
-                                transition: {
-                                    duration: 0.3
-                                }
-                            }
-                        }}
-                    >
-                        <motion.div
-                            className="absolute inset-0 bg-black"
-                            initial={{ x: '-100%' }}
-                            variants={{
-                                hover: {
-                                    x: 0,
-                                    transition: {
-                                        duration: 0.3,
-                                        ease: [0.25, 0.8, 0.25, 1]
+                {/* Split into two columns */}
+                <div className="w-full max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+                  
+                    <div className="md:w-1/2 md:pr-8">
+                        <div className="text-4xl md:text-7xl font-chivo font-bold italic mb-4 text-white">
+                            Athlete<br />Connect
+                        </div>
+                        <p className="text-lg md:text-xl text-white mb-8 max-w-xl">
+                            Your ultimate platform for connecting athletes and coaches. Train smarter, perform better, and achieve greatness together.
+                        </p>
+                        <div className="flex gap-4">
+                            <motion.button
+                                onClick={() => navigate('/login')}
+                                className="bg-transparent text-[var(--neon-green)] border-2 border-[var(--neon-green)] font-bold py-3 px-8 rounded-full overflow-hidden relative"
+                                whileHover="hover"
+                                variants={{
+                                    hover: {
+                                        scale: 1.02,
+                                        transition: {
+                                            duration: 0.3
+                                        }
                                     }
-                                }
-                            }}
-                        />
-                        <motion.span
-                            className="relative z-10"
-                            variants={{
-                                hover: {
-                                    color: 'var(--neon-green)',
-                                    transition: {
-                                        duration: 0.3
+                                }}
+                            >
+                                <motion.span className="relative z-10">
+                                    Login
+                                </motion.span>
+                            </motion.button>
+
+                            <motion.button
+                                onClick={() => navigate('/signup')}
+                                className="bg-[var(--neon-green)] text-black font-bold py-3 px-8 rounded-full overflow-hidden relative"
+                                whileHover="hover"
+                                variants={{
+                                    hover: {
+                                        scale: 1.02,
+                                        transition: {
+                                            duration: 0.3
+                                        }
                                     }
-                                }
-                            }}
-                        >
-                            Login / Sign Up
-                        </motion.span>
-                    </motion.button>
+                                }}
+                            >
+                                <motion.span className="relative z-10">
+                                    Sign Up
+                                </motion.span>
+                            </motion.button>
+                        </div>
+                    </div>
+                    
+                    {/* Right column: Placeholder for future image */}
+                    <div className="md:w-1/2 mt-8 md:mt-0">
+                        {/* Add your image here later */}
+                    </div>
                 </div>
             </div>
 

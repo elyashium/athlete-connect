@@ -7,6 +7,7 @@ import trophy from '../media/trophy.json';
 import coach from '../media/coach.json';
 
 interface OnboardingFormProps {
+  mode: 'login' | 'signup';
   userType: UserType | null;
   setUserType: (userType: UserType | null) => void;
   formData: {
@@ -26,13 +27,7 @@ interface OnboardingFormProps {
 const sportsList = ['Football', 'Basketball', 'Tennis', 'Swimming', 'Running', 'Cycling', 'Martial Arts', 'Gymnastics'];
 const experienceLevels = ['Beginner', 'Intermediate', 'Advanced', 'Professional'];
 
-export default function OnboardingForm({
-  userType,
-  setUserType,
-  formData,
-  setFormData,
-  setIsLoggedIn,
-}: OnboardingFormProps) {
+export default function OnboardingForm({ mode, userType, setUserType, formData, setFormData, setIsLoggedIn }: OnboardingFormProps) {
   const [step, setStep] = useState(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const navigate = useNavigate();
@@ -70,10 +65,14 @@ export default function OnboardingForm({
     navigate('/home'); // Redirect to the home page after successful submission
   };
 
+  // Only show user type selection and additional fields for signup
+  const showUserTypeSelection = mode === 'signup' && step === 1;
+  const showAdditionalFields = mode === 'signup' && step === 2;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-6">
       <div className="max-w-lg w-full p-8 shadow-lg">
-        {step === 1 ? (
+        {showUserTypeSelection ? (
           <div className="space-y-6 text-center">
             <h2 className="text-3xl font-bold neon-text">Choose Your Path</h2>
             <div className="grid grid-cols-2 gap-4">
@@ -105,15 +104,20 @@ export default function OnboardingForm({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
-            <h2 className="text-3xl font-bold text-center neon-text mb-4">Create Your Account</h2>
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="input-field"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            />
-            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+            <h2 className="text-3xl font-bold text-center neon-text mb-4">
+              {mode === 'login' ? 'Welcome Back' : 'Create Your Account'}
+            </h2>
+            
+            {mode === 'signup' && (
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="input-field"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
+            )}
+            
             <input
               type="email"
               placeholder="Email Address"
@@ -121,7 +125,7 @@ export default function OnboardingForm({
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+            
             <input
               type="password"
               placeholder="Password"
@@ -129,78 +133,99 @@ export default function OnboardingForm({
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
-            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
 
-            {userType === 'athlete' && (
+            {showAdditionalFields && (
               <>
-                <select
-                  className="input-field"
-                  value={formData.sport}
-                  onChange={(e) => setFormData({ ...formData, sport: e.target.value })}
-                >
-                  <option value="">Select Sport</option>
-                  {sportsList.map((sport) => (
-                    <option key={sport} value={sport}>
-                      {sport}
-                    </option>
-                  ))}
-                </select>
-                {errors.sport && <p className="text-red-500 text-sm">{errors.sport}</p>}
+                {userType === 'athlete' && (
+                  <>
+                    <select
+                      className="input-field"
+                      value={formData.sport}
+                      onChange={(e) => setFormData({ ...formData, sport: e.target.value })}
+                    >
+                      <option value="">Select Sport</option>
+                      {sportsList.map((sport) => (
+                        <option key={sport} value={sport}>
+                          {sport}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.sport && <p className="text-red-500 text-sm">{errors.sport}</p>}
 
-                <select
-                  className="input-field"
-                  value={formData.experienceLevel}
-                  onChange={(e) => setFormData({ ...formData, experienceLevel: e.target.value })}
-                >
-                  <option value="">Select Experience Level</option>
-                  {experienceLevels.map((level) => (
-                    <option key={level} value={level}>
-                      {level}
-                    </option>
-                  ))}
-                </select>
-                {errors.experienceLevel && <p className="text-red-500 text-sm">{errors.experienceLevel}</p>}
-              </>
-            )}
+                    <select
+                      className="input-field"
+                      value={formData.experienceLevel}
+                      onChange={(e) => setFormData({ ...formData, experienceLevel: e.target.value })}
+                    >
+                      <option value="">Select Experience Level</option>
+                      {experienceLevels.map((level) => (
+                        <option key={level} value={level}>
+                          {level}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.experienceLevel && <p className="text-red-500 text-sm">{errors.experienceLevel}</p>}
+                  </>
+                )}
 
-            {userType === 'organization' && (
-              <>
-                <input
-                  type="text"
-                  placeholder="Organization Name"
-                  className="input-field"
-                  value={formData.organizationName}
-                  onChange={(e) => setFormData({ ...formData, organizationName: e.target.value })}
-                />
-                {errors.organizationName && <p className="text-red-500 text-sm">{errors.organizationName}</p>}
-                <input
-                  type="text"
-                  placeholder="Role"
-                  className="input-field"
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                />
-                {errors.role && <p className="text-red-500 text-sm">{errors.role}</p>}
+                {userType === 'organization' && (
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Organization Name"
+                      className="input-field"
+                      value={formData.organizationName}
+                      onChange={(e) => setFormData({ ...formData, organizationName: e.target.value })}
+                    />
+                    {errors.organizationName && <p className="text-red-500 text-sm">{errors.organizationName}</p>}
+                    <input
+                      type="text"
+                      placeholder="Role"
+                      className="input-field"
+                      value={formData.role}
+                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    />
+                    {errors.role && <p className="text-red-500 text-sm">{errors.role}</p>}
 
-                <select
-                  className="input-field"
-                  value={formData.yearsExperience}
-                  onChange={(e) => setFormData({ ...formData, yearsExperience: e.target.value })}
-                >
-                  <option value="">Select Years of Experience</option>
-                  {[...Array(41)].map((_, i) => (
-                    <option key={i} value={i}>
-                      {i} Years
-                    </option>
-                  ))}
-                </select>
-                {errors.yearsExperience && <p className="text-red-500 text-sm">{errors.yearsExperience}</p>}
+                    <select
+                      className="input-field"
+                      value={formData.yearsExperience}
+                      onChange={(e) => setFormData({ ...formData, yearsExperience: e.target.value })}
+                    >
+                      <option value="">Select Years of Experience</option>
+                      {[...Array(41)].map((_, i) => (
+                        <option key={i} value={i}>
+                          {i} Years
+                        </option>
+                      ))}
+                    </select>
+                    {errors.yearsExperience && <p className="text-red-500 text-sm">{errors.yearsExperience}</p>}
+                  </>
+                )}
               </>
             )}
 
             <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2">
-              Get Started <ArrowRight className="w-4 h-4" />
+              {mode === 'login' ? 'Login' : 'Sign Up'} <ArrowRight className="w-4 h-4" />
             </button>
+
+            <p className="text-center text-gray-400">
+              {mode === 'login' ? (
+                <>
+                  Don't have an account?{' '}
+                  <a href="/signup" className="text-[var(--neon-green)] hover:underline">
+                    Sign up
+                  </a>
+                </>
+              ) : (
+                <>
+                  Already have an account?{' '}
+                  <a href="/login" className="text-[var(--neon-green)] hover:underline">
+                    Login
+                  </a>
+                </>
+              )}
+            </p>
           </form>
         )}
       </div>

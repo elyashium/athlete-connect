@@ -119,9 +119,23 @@ function App() {
     <Routes>
       <Route path="/" element={<Hero />} />
       <Route
-        path="/onboarding"
+        path="/signup"
         element={
           <OnboardingForm
+            mode="signup"
+            userType={userType}
+            setUserType={setUserType}
+            formData={formData}
+            setFormData={setFormData}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <OnboardingForm
+            mode="login"
             userType={userType}
             setUserType={setUserType}
             formData={formData}
