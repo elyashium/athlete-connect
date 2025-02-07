@@ -1,4 +1,3 @@
-
 import { Trophy, Target, Share2, Box, Activity, Building2, Medal, Calendar, MessageSquare, Award, Briefcase, GraduationCap } from 'lucide-react';
 import ContributionGraph from './ContributionGraph.tsx';
 import WishlistSection from './WishlistSection.tsx';
@@ -71,7 +70,7 @@ export default function ProfileView({ profile }: ProfileViewProps) {
     const isAthlete = profile.type === 'athlete';
 
     return (
-        <div className="min-h-screen bg-gray-900">
+        <div className="min-h-screen bg-black">
             {/* Cover Image */}
             <div
                 className="h-80 w-full bg-cover bg-center relative"
@@ -88,7 +87,7 @@ export default function ProfileView({ profile }: ProfileViewProps) {
                     {/* Left Column - Profile Info */}
                     <div className="lg:w-1/3 space-y-6">
                         {/* Profile Card */}
-                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-neon">
+                        <div className="bg-gray-800 rounded-xl p-6  shadow-neon">
                             <div className="flex flex-col items-center">
                                 <img
                                     src={profile.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80'}
@@ -110,7 +109,7 @@ export default function ProfileView({ profile }: ProfileViewProps) {
 
                         {/* Education Section */}
                         {profile.education && (
-                            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                            <div className="bg-gray-800 rounded-xl p-6 ">
                                 <h2 className="text-white font-semibold flex items-center gap-2 mb-4">
                                     <GraduationCap size={18} className="text-neon-green" />
                                     Education
@@ -129,7 +128,7 @@ export default function ProfileView({ profile }: ProfileViewProps) {
 
                         {/* Experience Section */}
                         {profile.experience && (
-                            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                            <div className="bg-gray-800 rounded-xl p-6 ">
                                 <h2 className="text-white font-semibold flex items-center gap-2 mb-4">
                                     <Briefcase size={18} className="text-neon-green" />
                                     Experience
@@ -153,31 +152,45 @@ export default function ProfileView({ profile }: ProfileViewProps) {
                         {isAthlete ? (
                             <>
                                 {/* Posts Section */}
-                                <PostsSection posts={profile.posts || []} />
+                                <div className="bg-black hover:bg-gray-900 transition-colors duration-200">
+                                    <PostsSection posts={profile.posts || []} />
+                                </div>
 
                                 {/* Activity Graph */}
-                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                <div className="bg-black hover:bg-gray-900 transition-colors duration-200 rounded-xl p-6 ">
                                     <h2 className="text-white font-semibold flex items-center gap-2 mb-4">
                                         <Activity size={18} className="text-neon-green" />
                                         Activity
                                     </h2>
-                                    <ContributionGraph data={profile.activityData || []} />
+                                    {profile.activityData && profile.activityData.length > 0 ? (
+                                        <ContributionGraph data={profile.activityData} />
+                                    ) : (
+                                        <p className="text-gray-400">No activity data available</p>
+                                    )}
                                 </div>
 
                                 {/* Skills Section */}
-                                <SkillsSection skills={profile.skills || []} />
+                                <div className="bg-black hover:bg-gray-900 transition-colors duration-200">
+                                    <SkillsSection skills={profile.skills || []} />
+                                </div>
 
                                 {/* Achievements Section */}
-                                <AchievementsSection achievements={profile.achievements || []} />
+                                <div className="bg-black hover:bg-gray-900 transition-colors duration-200">
+                                    <AchievementsSection achievements={profile.achievements || []} />
+                                </div>
 
                                 {/* Wishlist Section */}
-                                <WishlistSection wishlist={profile.wishlist || []} />
+                                <div className="bg-black hover:bg-gray-900 transition-colors duration-200">
+                                    <WishlistSection wishlist={profile.wishlist || []} />
+                                </div>
 
                                 {/* Equipment Section */}
-                                <EquipmentSection equipment={profile.equipment || []} />
+                                <div className="bg-black hover:bg-gray-900 transition-colors duration-200">
+                                    <EquipmentSection equipment={profile.equipment || []} />
+                                </div>
                             </>
                         ) : (
-                            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                            <div className="bg-gray-800 rounded-xl p-6 ">
                                 <h2 className="text-white font-semibold text-xl mb-4">About Organization</h2>
                                 <p className="text-gray-300">{profile.bio}</p>
                                 <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
