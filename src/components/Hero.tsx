@@ -36,9 +36,32 @@ export default function Hero() {
                                     }
                                 }}
                             >
-                                <motion.span className="relative z-10">
+                                <motion.span 
+                                    className="relative z-10"
+                                    variants={{
+                                        hover: {
+                                            x: [-2, 3, 0],
+                                            transition: {
+                                                duration: 0.3
+                                            }
+                                        }
+                                    }}
+                                >
                                     Login
                                 </motion.span>
+                                <motion.div
+                                    className="absolute inset-0 bg-[var(--neon-green)]"
+                                    variants={{
+                                        initial: { x: "-100%" },
+                                        hover: {
+                                            x: 0,
+                                            transition: {
+                                                duration: 0.3
+                                            }
+                                        }
+                                    }}
+                                    initial="initial"
+                                />
                             </motion.button>
 
                             <motion.button
@@ -54,9 +77,32 @@ export default function Hero() {
                                     }
                                 }}
                             >
-                                <motion.span className="relative z-10">
+                                <motion.span 
+                                    className="relative z-10"
+                                    variants={{
+                                        hover: {
+                                            x: [-2, 3, 0],
+                                            transition: {
+                                                duration: 0.3
+                                            }
+                                        }
+                                    }}
+                                >
                                     Sign Up
                                 </motion.span>
+                                <motion.div
+                                    className="absolute inset-0 bg-black"
+                                    variants={{
+                                        initial: { x: "-100%" },
+                                        hover: {
+                                            x: 0,
+                                            transition: {
+                                                duration: 0.3
+                                            }
+                                        }
+                                    }}
+                                    initial="initial"
+                                />
                             </motion.button>
                         </div>
                     </div>
