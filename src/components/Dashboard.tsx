@@ -20,48 +20,40 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
   const [activeTab, setActiveTab] = useState<'feed' | 'network' | 'jobs' | 'achievements'>('feed');
 
   // Mock data for demonstration
-  const mockProfile: ProfileData = {
+  const mockProfile: AthleteProfile = {
     id: '1',
     type: userType,
     name: userData.name || 'User Name',
+    email: userData.email || 'user@example.com',
     avatar: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
-    coverImage: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80',
-    bio: 'Aspiring cricketer with a passion for excellence and a dream to play for India.',
-    location: 'Mumbai, Maharashtra',
-    title: userType === 'athlete' ? 'Professional Athlete' : 'Sports Organization',
-    education: [
-      {
-        school: 'Sports Academy',
-        degree: 'Diploma in Sports',
-        field: 'Cricket',
-        from: '2018',
-        to: '2020'
-      }
-    ],
-    experience: [
-      {
-        role: 'Team Player',
-        organization: 'State Cricket Team',
-        from: '2021',
-        to: 'Present',
-        description: 'Regular team member participating in state-level matches'
-      }
-    ],
+    sports: [userData.sport || 'General'],
     achievements: [
       {
+        id: '1',
         title: 'State Championship Winner',
         date: '2023',
-        organization: 'State Sports Association',
-        description: 'Won state-level cricket championship'
+        description: 'Won state-level championship',
+        medal: 'gold'
       }
     ],
-    skills: [
-      { name: 'Batting', endorsements: 25, category: 'Cricket' }
-    ],
-    posts: [],
-    wishlist: [],
-    equipment: [],
-    activityData: [[1, 4], [2, 3]]
+    stats: {
+      'Matches': '48',
+      'Wins': '35',
+      'Experience': userData.yearsExperience || '2 years'
+    },
+    bio: 'Aspiring athlete with a passion for excellence.',
+    location: 'Mumbai, Maharashtra',
+    fundingCampaigns: [
+      {
+        id: '1',
+        title: 'Training Camp Funding',
+        description: 'Support my journey to the national championship',
+        goal: 5000,
+        raised: 2500,
+        deadline: '2024-12-31',
+        status: 'active'
+      }
+    ]
   };
 
   const mockPosts = [

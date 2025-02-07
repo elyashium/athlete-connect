@@ -41,31 +41,27 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
         {/* Stats */}
         <div className="mt-4 grid grid-cols-3 gap-4">
           {Object.entries(profile.stats).map(([key, value]) => (
-            <div key={key} className="text-center p-3  break-words rounded-lg bg-gray-800">
+            <div key={key} className="text-center p-3 break-words rounded-lg bg-gray-800">
               <p className="text-lg font-bold">{value}</p>
               <p className="text-xs text-gray-400">{key}</p>
             </div>
           ))}
         </div>
 
-        {/* Achievements */}
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold flex items-center justify-center gap-2 text-[var(--neon-green)]">
-            <Trophy className="w-5 h-5" />
-            Recent Achievements
-          </h3>
-          <div className="space-y-3 mt-3">
-            {profile.achievements.slice(0, 3).map((achievement) => (
-              <div key={achievement.id} className="flex items-center gap-3 bg-gray-800 p-3 rounded-lg">
-                <Medal className="w-5 h-5 text-[var(--neon-green)]" />
-                <div>
-                  <p className="font-medium">{achievement.title}</p>
-                  <p className="text-xs text-gray-400">{achievement.date}</p>
-                </div>
-              </div>
-            ))}
+        {/* Recent Achievement */}
+        {profile.achievements.length > 0 && (
+          <div className="mt-6">
+            <h3 className="text-lg font-semibold flex items-center justify-center gap-2 text-[var(--neon-green)]">
+              <Trophy className="w-5 h-5" />
+              Recent Achievement
+            </h3>
+            <div className="mt-3 bg-gray-800 p-3 rounded-lg">
+              <Medal className="w-5 h-5 text-[var(--neon-green)] mx-auto mb-2" />
+              <p className="font-medium">{profile.achievements[0].title}</p>
+              <p className="text-xs text-gray-400">{profile.achievements[0].date}</p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* View Profile Button */}
         <button 
