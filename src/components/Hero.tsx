@@ -38,10 +38,11 @@ export default function Hero() {
                     {/* Profile 1 */}
                     <div className="p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
-                            src="https://via.placeholder.com/100"
+                            src="src/media/male2.jpeg"
                             alt="Profile"
                             className="w-24 h-24 rounded-full mx-auto mb-4"
                         />
+
                         <h3 className="text-xl font-bold text-white">Rohit Sharma</h3>
                         <p className="text-gray-400">Professional Sprinter</p>
                         <p className="text-gray-300 mt-2">
@@ -52,7 +53,7 @@ export default function Hero() {
                     {/* Profile 2 */}
                     <div className="p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
-                            src="https://via.placeholder.com/100"
+                            src="src/media/female2.jpeg"
                             alt="Profile"
                             className="w-24 h-24 rounded-full mx-auto mb-4"
                         />
@@ -66,10 +67,11 @@ export default function Hero() {
                     {/* Profile 3 */}
                     <div className="p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
-                            src="https://via.placeholder.com/100"
+                            src="src/media/male1.jpg"
                             alt="Profile"
                             className="w-24 h-24 rounded-full mx-auto mb-4"
                         />
+
                         <h3 className="text-xl font-bold text-white">Arjun Nair</h3>
                         <p className="text-gray-400">Swimmer</p>
                         <p className="text-gray-300 mt-2">
@@ -80,7 +82,7 @@ export default function Hero() {
                     {/* Profile 4 */}
                     <div className=" p-6 rounded-lg text-center hover:bg-gray-800 hover:scale-105 transition-transform">
                         <img
-                            src="https://via.placeholder.com/100"
+                            src="src/media/female.jpeg"
                             alt="Profile"
                             className="w-24 h-24 rounded-full mx-auto mb-4"
                         />
