@@ -1,6 +1,7 @@
 // components/Hero.tsx
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SplineComponent from './Spline';
 
 
 export default function Hero() {
@@ -11,11 +12,11 @@ export default function Hero() {
     return (
         <div className="min-h-screen bg-black flex flex-col">
             {/* First Page: Title and Get Started Button */}
-            <div className="relative flex-grow flex flex-col items-center justify-center py-20 md:py-60">
+            <div className="relative flex-grow flex flex-col items-center justify-center py-20 md:py-40">
                 {/* Split into two columns */}
                 <div className="w-full max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
                   
-                    <div className="md:w-1/2 md:pr-8">
+                    <div className="md:w-1/2 md:pr-8 z-10">
                         <div className="text-4xl md:text-7xl font-chivo font-bold italic mb-4 text-white">
                             Athlete<br />Connect
                         </div>
@@ -107,9 +108,11 @@ export default function Hero() {
                         </div>
                     </div>
                     
-                    {/* Right column: Placeholder for future image */}
-                    <div className="md:w-1/2 mt-8 md:mt-0">
-                        {/* Add your image here later */}
+                    {/* Right column - Spline Component */}
+                    <div className="md:w-1/2 mt-8 md:mt-0 h-[400px] md:h-[600px] relative">
+                        <div className="absolute inset-0">
+                            <SplineComponent />
+                        </div>
                     </div>
                 </div>
             </div>
