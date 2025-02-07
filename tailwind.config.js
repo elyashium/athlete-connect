@@ -8,6 +8,9 @@ export default {
         'neon-blue': 'var(--neon-blue)',
         'neon-pink': 'var(--neon-pink)',
       },
+      fontFamily: {
+        chivo: ['Chivo', 'sans-serif'],
+      },
     },
   },
   plugins: [],

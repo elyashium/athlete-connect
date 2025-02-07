@@ -35,3 +35,26 @@
     @apply flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-colors duration-200;
   }
 }
+
+
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    var(--neon-green) 20%,
+    #00ff9d 30%,
+    #00ffcc 70%,
+    var(--neon-green) 80%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: textShine 3s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 200% center;
+  }
+}
