@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { UserType } from '../types';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import trophy from '../media/trophy.json';
@@ -30,6 +30,7 @@ const experienceLevels = ['Beginner', 'Intermediate', 'Advanced', 'Professional'
 export default function OnboardingForm({ mode, userType, setUserType, formData, setFormData, setIsLoggedIn }: OnboardingFormProps) {
   const [step, setStep] = useState(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -126,13 +127,26 @@ export default function OnboardingForm({ mode, userType, setUserType, formData, 
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
             
-            <input
-              type="password"
-              placeholder="Password"
-              className="input-field"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="input-field pr-10 w-full"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
+              </button>
+            </div>
 
             {showAdditionalFields && (
               <>
