@@ -5,6 +5,7 @@ import EquipmentSection from './EquipmentSection.tsx';
 import PostsSection from './PostsSection.tsx';
 import SkillsSection from './SkillsSection.tsx';
 import AchievementsSection from './AchievementsSection.tsx';
+import { useLocation } from 'react-router-dom';
 
 interface ProfileData {
     id?: string;
@@ -66,7 +67,15 @@ interface ProfileViewProps {
     profile: ProfileData;
 }
 
-export default function ProfileView({ profile }: ProfileViewProps) {
+export default function ProfileView() {
+    const location = useLocation();
+    const profile = location.state?.profile;
+
+    // If no profile data is passed, you might want to handle that case
+    if (!profile) {
+        return <div>Profile not found</div>;
+    }
+
     const isAthlete = profile.type === 'athlete';
 
     return (
@@ -87,59 +96,44 @@ export default function ProfileView({ profile }: ProfileViewProps) {
                     {/* Left Column - Profile Info */}
                     <div className="lg:w-1/3 space-y-6">
                         {/* Profile Card */}
-                        <div className="bg-gray-800 rounded-xl p-6  shadow-neon">
+                        <div className="bg-gray-800 rounded-xl p-6 shadow-neon">
                             <div className="flex flex-col items-center">
                                 <img
-                                    src={profile.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80'}
+                                    src={profile.avatar}
                                     alt={profile.name}
                                     className="w-32 h-32 rounded-full border-4 border-neon-green shadow-neon"
                                 />
                                 <h1 className="text-2xl font-bold text-white mt-4">{profile.name}</h1>
                                 <p className="text-neon-green flex items-center gap-2 mt-2">
-                                    {isAthlete ? <Trophy size={18} /> : <Building2 size={18} />}
-                                    {profile.title || profile.type.charAt(0).toUpperCase() + profile.type.slice(1)}
+                                    {profile.sports.join(', ')}
                                 </p>
                                 <p className="text-gray-400 text-center mt-4">{profile.bio}</p>
-                                <div className="flex items-center gap-2 mt-4 text-gray-300">
-                                    <MessageSquare size={16} className="text-neon-green" />
-                                    <span>Message</span>
-                                </div>
                             </div>
                         </div>
 
-                        {/* Education Section */}
-                        {profile.education && (
-                            <div className="bg-gray-800 rounded-xl p-6 ">
-                                <h2 className="text-white font-semibold flex items-center gap-2 mb-4">
-                                    <GraduationCap size={18} className="text-neon-green" />
-                                    Education
-                                </h2>
-                                <div className="space-y-4">
-                                    {profile.education.map((edu, index) => (
-                                        <div key={index} className="border-l-2 border-neon-green pl-4">
-                                            <h3 className="text-white font-medium">{edu.school}</h3>
-                                            <p className="text-gray-300">{edu.degree} in {edu.field}</p>
-                                            <p className="text-gray-400 text-sm">{edu.from} - {edu.to}</p>
-                                        </div>
-                                    ))}
-                                </div>
+                        {/* Stats Section */}
+                        <div className="bg-gray-800 rounded-xl p-6">
+                            <h2 className="text-white font-semibold mb-4">Stats</h2>
+                            <div className="grid grid-cols-2 gap-4">
+                                {Object.entries(profile.stats).map(([key, value]) => (
+                                    <div key={key} className="text-center p-3 bg-gray-700 rounded-lg">
+                                        <p className="text-lg font-bold text-white">{value}</p>
+                                        <p className="text-sm text-gray-400">{key}</p>
+                                    </div>
+                                ))}
                             </div>
-                        )}
+                        </div>
 
-                        {/* Experience Section */}
-                        {profile.experience && (
-                            <div className="bg-gray-800 rounded-xl p-6 ">
-                                <h2 className="text-white font-semibold flex items-center gap-2 mb-4">
-                                    <Briefcase size={18} className="text-neon-green" />
-                                    Experience
-                                </h2>
+                        {/* Achievements Section */}
+                        {profile.achievements && profile.achievements.length > 0 && (
+                            <div className="bg-gray-800 rounded-xl p-6">
+                                <h2 className="text-white font-semibold mb-4">Recent Achievements</h2>
                                 <div className="space-y-4">
-                                    {profile.experience.map((exp, index) => (
-                                        <div key={index} className="border-l-2 border-neon-green pl-4">
-                                            <h3 className="text-white font-medium">{exp.role}</h3>
-                                            <p className="text-gray-300">{exp.organization}</p>
-                                            <p className="text-gray-400 text-sm">{exp.from} - {exp.to}</p>
-                                            <p className="text-gray-400 mt-2">{exp.description}</p>
+                                    {profile.achievements.map((achievement) => (
+                                        <div key={achievement.id} className="p-4 bg-gray-700 rounded-lg">
+                                            <h3 className="text-white font-medium">{achievement.title}</h3>
+                                            <p className="text-gray-400 text-sm">{achievement.date}</p>
+                                            <p className="text-gray-300 mt-2">{achievement.description}</p>
                                         </div>
                                     ))}
                                 </div>

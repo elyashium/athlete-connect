@@ -103,6 +103,11 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
 
   const navigate = useNavigate();
 
+  // When navigating to profile, pass the mockProfile data as state
+  const handleProfileClick = () => {
+    navigate(`/profile/${mockProfile.id}`, { state: { profile: mockProfile } });
+  };
+
   return (
     <div className="min-h-screen bg-black">
       {/* Navigation */}
@@ -151,8 +156,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                 </button>
                 <div className="flex items-center gap-3">
                   <img
-                    // onClick={() => navigate(`/profile/${profile.id}`)}
-                    onClick={() => navigate(`/profile/${mockProfile.id}`)}
+                    onClick={handleProfileClick}
                     src={mockProfile.avatar}
                     alt="Profile"
                     className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"
@@ -176,7 +180,9 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Profile Section */}
           <div className="lg:col-span-3">
-            <ProfileCard profile={mockProfile} />
+            <div onClick={handleProfileClick}>
+              <ProfileCard profile={mockProfile} />
+            </div>
           </div>
 
           {/* Feed Section */}
