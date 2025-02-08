@@ -60,10 +60,19 @@ export default function OnboardingForm({ mode, userType, setUserType, formData, 
     e.preventDefault();
     if (!validateForm()) return;
 
-    const userData = { userType, userData: formData };
-    localStorage.setItem('athleteConnectUser', JSON.stringify(userData));
-    setIsLoggedIn(true);
-    navigate('/home'); // Redirect to the home page after successful submission
+    if (mode === 'signup') {
+      // For signup, save data and redirect to profile setup
+      const userData = { userType, userData: formData };
+      localStorage.setItem('athleteConnectUser', JSON.stringify(userData));
+      setIsLoggedIn(true);
+      navigate('/profile-setup', { replace: true }); // Use replace to prevent going back to signup
+    } else {
+      // For login, save data and redirect to dashboard
+      const userData = { userType, userData: formData };
+      localStorage.setItem('athleteConnectUser', JSON.stringify(userData));
+      setIsLoggedIn(true);
+      navigate('/home', { replace: true });
+    }
   };
 
   // Only show user type selection and additional fields for signup
@@ -227,16 +236,22 @@ export default function OnboardingForm({ mode, userType, setUserType, formData, 
               {mode === 'login' ? (
                 <>
                   Don't have an account?{' '}
-                  <a href="/signup" className="text-[var(--neon-green)] hover:underline">
+                  <button 
+                    onClick={() => navigate('/signup')} 
+                    className="text-[var(--neon-green)] hover:underline"
+                  >
                     Sign up
-                  </a>
+                  </button>
                 </>
               ) : (
                 <>
                   Already have an account?{' '}
-                  <a href="/login" className="text-[var(--neon-green)] hover:underline">
+                  <button 
+                    onClick={() => navigate('/login')} 
+                    className="text-[var(--neon-green)] hover:underline"
+                  >
                     Login
-                  </a>
+                  </button>
                 </>
               )}
             </p>

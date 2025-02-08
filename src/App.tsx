@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import Dashboard from './components/Dashboard';
 import ProfileView from './components/Profiles/ProfileView';
 import { ProfileData } from './components/Profiles/ProfileView';
+import ProfileSetup from './components/ProfileSetup';
 
 function App() {
   const [userType, setUserType] = useState<UserType | null>(null);
@@ -128,6 +129,16 @@ function App() {
             formData={formData}
             setFormData={setFormData}
             setIsLoggedIn={setIsLoggedIn}
+          />
+        }
+      />
+      <Route
+        path="/profile-setup"
+        element={
+          <ProfileSetup
+            userType={userType!}
+            userData={formData}
+            setFormData={setFormData}
           />
         }
       />

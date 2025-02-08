@@ -6,28 +6,29 @@ import NetworkSuggestions from './NetworkSuggestions';
 import FeedPost from './FeedPost';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
-
 interface DashboardProps {
   userType: UserType;
-  userData: any; // Match the formData type from App.tsx
+  userData: any;
   onLogout: () => void;
 }
 
 export default function Dashboard({ userType, userData, onLogout }: DashboardProps) {
   const [activeTab, setActiveTab] = useState<'feed' | 'network' | 'jobs' | 'achievements'>('feed');
+  const navigate = useNavigate();
 
-  // Mock data for demonstration
-  const mockProfile: AthleteProfile = {
+  // Get stored profile data from localStorage
+  const storedUser = localStorage.getItem('athleteConnectUser');
+  const storedUserData = storedUser ? JSON.parse(storedUser).userData : null;
+
+  // Combine stored data with any additional profile data
+  const mockProfile = {
     id: '1',
     type: userType,
-    name: userData.name || 'User Name',
-    email: userData.email || 'user@example.com',
-    avatar: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
-    sports: [userData.sport || 'General'],
-    achievements: [
+    name: storedUserData?.name || userData.name || 'User Name',
+    email: storedUserData?.email || userData.email || 'user@example.com',
+    avatar: storedUserData?.avatar || 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
+    sports: [storedUserData?.sport || userData.sport || 'General'],
+    achievements: storedUserData?.achievements || [
       {
         id: '1',
         title: 'State Championship Winner',
@@ -39,11 +40,11 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
     stats: {
       'Matches': '48',
       'Wins': '35',
-      'Experience': userData.yearsExperience || '2 years'
+      'Experience': storedUserData?.yearsExperience || userData.yearsExperience || '2 years'
     },
-    bio: 'Aspiring athlete with a passion for excellence.',
-    location: 'Mumbai, Maharashtra',
-    fundingCampaigns: [
+    bio: storedUserData?.bio || 'Aspiring athlete with a passion for excellence.',
+    location: storedUserData?.location || 'Mumbai, Maharashtra',
+    fundingCampaigns: storedUserData?.fundingCampaigns || [
       {
         id: '1',
         title: 'Training Camp Funding',
@@ -56,54 +57,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
     ]
   };
 
-  const mockPosts = [
-    {
-      id: '1',
-      author: {
-        name: 'Virat Sharma',
-        title: 'Cricketer - Delhi Capitals',
-        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80',
-      },
-      content: 'Thrilled to be part of Delhi Capitals for this IPL season! Looking forward to showcasing my skills on the field. #IPL #DelhiCapitals #Cricket',
-      image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&q=80',
-      likes: 532,
-      comments: 89,
-      shares: 23,
-      timestamp: '2h ago',
-    },
-    {
-      id: '2',
-      author: {
-        name: 'Ajay Deshmukh',
-        title: 'Kabaddi Coach - U Mumba',
-        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80',
-      },
-      content: 'Looking for young and talented raiders for our Pro Kabaddi League team. Trials happening in Mumbai this weekend. DM for details! #Kabaddi #ProKabaddiLeague #U-Mumba',
-      likes: 289,
-      comments: 64,
-      shares: 48,
-      timestamp: '4h ago',
-    },
-    {
-      id: '3',
-      author: {
-        name: 'Sneha Reddy',
-        title: 'Athlete - Track & Field',
-        avatar: 'https://images.unsplash.com/photo-1490135900371-3476360c1e9b?auto=format&fit=crop&q=80',
-      },
-      content: 'Excited to represent India in the Asian Games 2024! Training hard every day to bring home the gold. #AsianGames #TrackAndField #IndiaProud',
-      image: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&q=80',
-      likes: 421,
-      comments: 72,
-      shares: 15,
-      timestamp: '6h ago',
-    },
-  ];
-
-
-  const navigate = useNavigate();
-
-  // When navigating to profile, pass the mockProfile data as state
+  // Handle profile navigation
   const handleProfileClick = () => {
     navigate(`/profile/${mockProfile.id}`, { state: { profile: mockProfile } });
   };
