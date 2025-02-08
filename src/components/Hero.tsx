@@ -17,7 +17,7 @@ export default function Hero() {
                 <div className="w-full max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
                   
                     <div className="md:w-1/2 md:pr-8 z-10 mt-8 md:mt-0">
-                        <div className="text-4xl  md:text-7xl font-chivo font-bold italic mb-4 text-white">
+                        <div className="text-5xl md:text-8xl font-chivo font-bold italic mb-4 text-white">
                             Athlete<br />Connect.
                         </div>
                         <p className="text-lg md:text-xl text-white mb-8 max-w-xl">
