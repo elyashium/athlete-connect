@@ -17,100 +17,54 @@ export default function Hero() {
                 <div className="w-full max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
                   
                     <div className="md:w-1/2 md:pr-8 z-10 mt-8 md:mt-0">
-                        <div className="text-4xl md:text-7xl font-chivo font-bold italic mb-4 text-white">
-                            Athlete<br />Connect
+                        <div className="text-4xl  md:text-7xl font-chivo font-bold italic mb-4 text-white">
+                            Athlete<br />Connect.
                         </div>
                         <p className="text-lg md:text-xl text-white mb-8 max-w-xl">
                             Your ultimate platform for connecting athletes and coaches. Train smarter, perform better, and achieve greatness together.
                         </p>
                         <div className="flex gap-4">
+                            {/* Login Button */}
                             <motion.button
                                 onClick={() => navigate('/login')}
                                 className="bg-transparent text-[var(--neon-green)] border-2 border-[var(--neon-green)] font-bold py-3 px-8 rounded-full overflow-hidden relative"
-                                whileHover="hover"
-                                variants={{
-                                    hover: {
-                                        scale: 1.02,
-                                        transition: {
-                                            duration: 0.3
-                                        }
-                                    }
+                                whileHover={{
+                                    scale: 1.02,
+                                    transition: { duration: 0.2 }
                                 }}
                             >
-                                <motion.span 
-                                    className="relative z-10"
-                                    variants={{
-                                        hover: {
-                                            x: [-2, 3, 0],
-                                            transition: {
-                                                duration: 0.3
-                                            }
-                                        }
-                                    }}
-                                >
-                                    Login
-                                </motion.span>
+                                <span className="relative z-10">Login</span>
                                 <motion.div
                                     className="absolute inset-0 bg-[var(--neon-green)]"
-                                    variants={{
-                                        initial: { x: "-100%" },
-                                        hover: {
-                                            x: 0,
-                                            transition: {
-                                                duration: 0.3
-                                            }
-                                        }
-                                    }}
-                                    initial="initial"
+                                    initial={{ x: '-100%' }}
+                                    whileHover={{ x: 0 }}
+                                    transition={{ duration: 0.2 }}
                                 />
                             </motion.button>
 
+                            {/* Sign Up Button */}
                             <motion.button
                                 onClick={() => navigate('/signup')}
                                 className="bg-[var(--neon-green)] text-black font-bold py-3 px-8 rounded-full overflow-hidden relative"
-                                whileHover="hover"
-                                variants={{
-                                    hover: {
-                                        scale: 1.02,
-                                        transition: {
-                                            duration: 0.3
-                                        }
-                                    }
+                                whileHover={{
+                                    scale: 1.02,
+                                    transition: { duration: 0.2 }
                                 }}
                             >
-                                <motion.span 
-                                    className="relative z-10"
-                                    variants={{
-                                        hover: {
-                                            x: [-2, 3, 0],
-                                            transition: {
-                                                duration: 0.3
-                                            }
-                                        }
-                                    }}
-                                >
-                                    Sign Up
-                                </motion.span>
+                                <span className="relative z-10">Sign Up</span>
                                 <motion.div
                                     className="absolute inset-0 bg-black"
-                                    variants={{
-                                        initial: { x: "-100%" },
-                                        hover: {
-                                            x: 0,
-                                            transition: {
-                                                duration: 0.3
-                                            }
-                                        }
-                                    }}
-                                    initial="initial"
+                                    initial={{ x: '-100%' }}
+                                    whileHover={{ x: 0 }}
+                                    transition={{ duration: 0.2 }}
                                 />
                             </motion.button>
                         </div>
                     </div>
                     
                     {/* Right column - Spline Component */}
-                    <div className="md:w-1/2 mt-8 md:mt-0 h-[400px] md:h-[600px] relative left-4">
-                        <div className="absolute inset-0">
+                    <div className="w-full md:w-1/2  h-[300px] md:h-[600px] relative overflow-hidden">
+                        <div className="absolute inset-0 w-full h-full">
                             <SplineComponent />
                         </div>
                     </div>
