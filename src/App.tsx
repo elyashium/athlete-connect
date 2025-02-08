@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, Navigate, useParams } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserType } from './types';
 import OnboardingForm from './components/OnboardingForm';

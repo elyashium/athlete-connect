@@ -35,7 +35,11 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
     skills: userData.skills || [],
     education: userData.education || [],
     experience: userData.experience || [],
-    fundingCampaigns: userData.fundingCampaigns || []
+    fundingCampaigns: userData.fundingCampaigns || [],
+    coverImage: userData.coverImage || 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80',
+    posts: userData.posts || [],
+    equipment: userData.equipment || [],
+    wishlist: userData.wishlist || []
   };
 
   // Create more realistic mock posts
@@ -77,6 +81,23 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
       media: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop'
     }
   ];
+
+  // Modify the profile navigation handler
+  const handleProfileClick = () => {
+    navigate(`/profile/${profile.id}`, { 
+      state: { 
+        profile: {
+          ...profile,
+          coverImage: profile.coverImage || 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80',
+          posts: mockPosts.filter(post => post.author.id === profile.id),
+          skills: profile.skills || [],
+          achievements: profile.achievements || [],
+          equipment: [],
+          wishlist: []
+        }
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -129,7 +150,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                 src={profile.avatar}
                 alt="Profile"
                 className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"
-                onClick={() => navigate(`/profile/${profile.id}`)}
+                onClick={handleProfileClick}
               />
               <button
                 onClick={onLogout}
@@ -148,7 +169,7 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Profile Section */}
           <div className="lg:col-span-3">
-            <div onClick={() => navigate(`/profile/${profile.id}`)}>
+            <div onClick={handleProfileClick}>
               <ProfileCard profile={profile} />
             </div>
           </div>
