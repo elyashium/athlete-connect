@@ -38,15 +38,43 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
     fundingCampaigns: userData.fundingCampaigns || []
   };
 
-  // Mock posts for the feed
+  // Create more realistic mock posts
   const mockPosts = [
     {
       id: '1',
       author: profile,
-      content: 'Just completed my morning training session! 💪',
+      content: 'Just completed my morning training session! 💪 Feeling stronger every day. #AthleteLife #Training',
       timestamp: new Date().toISOString(),
       likes: 24,
-      comments: 5
+      comments: 5,
+      media: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&auto=format&fit=crop'
+    },
+    {
+      id: '2',
+      author: {
+        ...profile,
+        id: '2',
+        name: 'Sarah Johnson',
+        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80',
+      },
+      content: 'Great practice match today! Thanks to everyone who participated. Looking forward to the upcoming tournament! 🏆',
+      timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+      likes: 18,
+      comments: 3
+    },
+    {
+      id: '3',
+      author: {
+        ...profile,
+        id: '3',
+        name: 'Mike Chen',
+        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80',
+      },
+      content: 'New personal best in today\'s training! Remember: consistency is key 🎯',
+      timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+      likes: 32,
+      comments: 7,
+      media: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop'
     }
   ];
 
@@ -58,6 +86,14 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-8">
               <h1 className="text-xl font-bold text-white">AthleteConnect</h1>
+              <div className="hidden md:flex items-center relative">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="input-field pl-10 w-[300px]"
+                />
+                <Search className="w-4 h-4 text-gray-400 absolute left-3" />
+              </div>
               <div className="hidden md:flex items-center gap-6">
                 <button
                   onClick={() => setActiveTab('feed')}
@@ -84,6 +120,9 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
             </div>
             <div className="flex items-center gap-4">
               <button className="text-gray-400 hover:text-white">
+                <MessageSquare className="w-5 h-5" />
+              </button>
+              <button className="text-gray-400 hover:text-white">
                 <Bell className="w-5 h-5" />
               </button>
               <img
@@ -109,7 +148,9 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Profile Section */}
           <div className="lg:col-span-3">
-            <ProfileCard profile={profile} />
+            <div onClick={() => navigate(`/profile/${profile.id}`)}>
+              <ProfileCard profile={profile} />
+            </div>
           </div>
 
           {/* Feed Section */}
