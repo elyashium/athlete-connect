@@ -47,7 +47,7 @@ function App() {
       role: '',
       yearsExperience: '',
     });
-    navigate('/'); // Redirect to the home page
+    navigate('/', { replace: true });
   };
 
   // Mock data store (moved inside App component)
@@ -133,16 +133,6 @@ function App() {
         }
       />
       <Route
-        path="/profile-setup"
-        element={
-          <ProfileSetup
-            userType={userType!}
-            userData={formData}
-            setFormData={setFormData}
-          />
-        }
-      />
-      <Route
         path="/login"
         element={
           <OnboardingForm
@@ -155,13 +145,32 @@ function App() {
           />
         }
       />
-      {isLoggedIn ? (
-        <Route path="/home" element={<Dashboard userType={userType!} userData={formData} onLogout={handleLogout} />} />
-      ) : (
-        <Route path="/home" element={<Navigate to="/" />} />
-      )}
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route
+        path="/profile-setup"
+        element={
+          isLoggedIn ? (
+            <ProfileSetup
+              userType={userType!}
+              userData={formData}
+              setFormData={setFormData}
+            />
+          ) : (
+            <Navigate to="/signup" replace />
+          )
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          isLoggedIn ? (
+            <Dashboard userType={userType!} userData={formData} onLogout={handleLogout} />
+          ) : (
+            <Navigate to="/" replace />
+          )
+        }
+      />
       <Route path="/profile/:id" element={<ProfileViewWrapper />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
