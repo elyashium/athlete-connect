@@ -40,7 +40,6 @@ export default function ProfileSetup({ userType, userData, setFormData }: Profil
       // Combine userData with profileData
       const updatedData = { ...userData, ...profileData };
       setFormData(updatedData);
-      navigate('/home', { replace: true });
     }
   };
 

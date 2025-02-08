@@ -16,51 +16,39 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
   const [activeTab, setActiveTab] = useState<'feed' | 'network' | 'jobs' | 'achievements'>('feed');
   const navigate = useNavigate();
 
-  // Get stored profile data from localStorage
-  const storedUser = localStorage.getItem('athleteConnectUser');
-  const storedUserData = storedUser ? JSON.parse(storedUser).userData : null;
-
-  // Combine stored data with any additional profile data
-  const mockProfile = {
+  // Create a profile object that matches the expected structure
+  const profile = {
     id: '1',
     type: userType,
-    name: storedUserData?.name || userData.name || 'User Name',
-    email: storedUserData?.email || userData.email || 'user@example.com',
-    avatar: storedUserData?.avatar || 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
-    sports: [storedUserData?.sport || userData.sport || 'General'],
-    achievements: storedUserData?.achievements || [
-      {
-        id: '1',
-        title: 'State Championship Winner',
-        date: '2023',
-        description: 'Won state-level championship',
-        medal: 'gold'
-      }
-    ],
-    stats: {
-      'Matches': '48',
-      'Wins': '35',
-      'Experience': storedUserData?.yearsExperience || userData.yearsExperience || '2 years'
+    name: userData.name || 'User Name',
+    email: userData.email || 'user@example.com',
+    avatar: userData.avatar || 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80',
+    sports: [userData.sport || 'General'],
+    achievements: userData.achievements || [],
+    stats: userData.stats || {
+      'Matches': '0',
+      'Wins': '0',
+      'Experience': userData.yearsExperience || '0'
     },
-    bio: storedUserData?.bio || 'Aspiring athlete with a passion for excellence.',
-    location: storedUserData?.location || 'Mumbai, Maharashtra',
-    fundingCampaigns: storedUserData?.fundingCampaigns || [
-      {
-        id: '1',
-        title: 'Training Camp Funding',
-        description: 'Support my journey to the national championship',
-        goal: 5000,
-        raised: 2500,
-        deadline: '2024-12-31',
-        status: 'active'
-      }
-    ]
+    bio: userData.bio || 'Aspiring athlete with a passion for excellence.',
+    location: userData.location || 'Mumbai, Maharashtra',
+    skills: userData.skills || [],
+    education: userData.education || [],
+    experience: userData.experience || [],
+    fundingCampaigns: userData.fundingCampaigns || []
   };
 
-  // Handle profile navigation
-  const handleProfileClick = () => {
-    navigate(`/profile/${mockProfile.id}`, { state: { profile: mockProfile } });
-  };
+  // Mock posts for the feed
+  const mockPosts = [
+    {
+      id: '1',
+      author: profile,
+      content: 'Just completed my morning training session! 💪',
+      timestamp: new Date().toISOString(),
+      likes: 24,
+      comments: 5
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-black">
@@ -69,21 +57,16 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-bold neon-text">Athlete Connect</h1>
-              <div className="relative">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search athletes, teams, or opportunities..."
-                  className="pl-10 pr-4 py-2 bg-gray-900 rounded-lg border border-gray-700 focus:neon-border focus:outline-none w-[300px]"
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-4">
-                <button className="nav-item" onClick={() => setActiveTab('feed')}>
-                  <TrendingUp className={`w-5 h-5 ${activeTab === 'feed' ? 'text-[var(--neon-green)]' : 'text-gray-400'}`} />
-                  <span className="text-sm">Feed</span>
+              <h1 className="text-xl font-bold text-white">AthleteConnect</h1>
+              <div className="hidden md:flex items-center gap-6">
+                <button
+                  onClick={() => setActiveTab('feed')}
+                  className={`flex items-center gap-2 ${
+                    activeTab === 'feed' ? 'text-[var(--neon-green)]' : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  <TrendingUp className="w-5 h-5" />
+                  <span>Feed</span>
                 </button>
                 <button className="nav-item" onClick={() => setActiveTab('network')}>
                   <Users2 className={`w-5 h-5 ${activeTab === 'network' ? 'text-[var(--neon-green)]' : 'text-gray-400'}`} />
@@ -98,32 +81,24 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
                   <span className="text-sm">Achievements</span>
                 </button>
               </div>
-              <div className="h-6 w-px bg-gray-700" />
-              <div className="flex items-center gap-4">
-                <button className="text-gray-400 hover:text-white relative">
-                  <MessageSquare className="w-5 h-5" />
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[var(--neon-green)] text-black text-xs rounded-full flex items-center justify-center">3</span>
-                </button>
-                <button className="text-gray-400 hover:text-white relative">
-                  <Bell className="w-5 h-5" />
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[var(--neon-green)] text-black text-xs rounded-full flex items-center justify-center">5</span>
-                </button>
-                <div className="flex items-center gap-3">
-                  <img
-                    onClick={handleProfileClick}
-                    src={mockProfile.avatar}
-                    alt="Profile"
-                    className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"
-                  />
-                  <button
-                    onClick={onLogout}
-                    className="text-gray-400 hover:text-white"
-                    title="Logout"
-                  >
-                    <LogOut className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <button className="text-gray-400 hover:text-white">
+                <Bell className="w-5 h-5" />
+              </button>
+              <img
+                src={profile.avatar}
+                alt="Profile"
+                className="w-8 h-8 rounded-full border border-gray-700 cursor-pointer"
+                onClick={() => navigate(`/profile/${profile.id}`)}
+              />
+              <button
+                onClick={onLogout}
+                className="text-gray-400 hover:text-white"
+                title="Logout"
+              >
+                <LogOut className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </div>
@@ -134,18 +109,16 @@ export default function Dashboard({ userType, userData, onLogout }: DashboardPro
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Profile Section */}
           <div className="lg:col-span-3">
-            <div onClick={handleProfileClick}>
-              <ProfileCard profile={mockProfile} />
-            </div>
+            <ProfileCard profile={profile} />
           </div>
 
           {/* Feed Section */}
           <div className="lg:col-span-6 space-y-6">
             {/* Create Post */}
             <div className="bg-gray-900 rounded-xl p-6">
-              <div className="flex gap-4 mb-4">
+              <div className="flex gap-4">
                 <img
-                  src={mockProfile.avatar}
+                  src={profile.avatar}
                   alt="Profile"
                   className="w-12 h-12 rounded-full"
                 />

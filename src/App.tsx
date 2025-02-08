@@ -33,6 +33,18 @@ function App() {
     }
   }, []);
 
+  const handleProfileSetupComplete = (updatedData: any) => {
+    // Update the local state
+    setFormData(updatedData);
+    
+    // Update localStorage with the new data
+    const userData = { userType, userData: updatedData };
+    localStorage.setItem('athleteConnectUser', JSON.stringify(userData));
+    
+    // Navigate to dashboard
+    navigate('/home', { replace: true });
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('athleteConnectUser');
     setIsLoggedIn(false);
@@ -152,7 +164,7 @@ function App() {
             <ProfileSetup
               userType={userType!}
               userData={formData}
-              setFormData={setFormData}
+              setFormData={handleProfileSetupComplete}
             />
           ) : (
             <Navigate to="/signup" replace />
