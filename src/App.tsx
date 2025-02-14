@@ -110,7 +110,7 @@ function App() {
     },
   ];
 
-  // Profile view wrapper component (moved inside App component)
+  // Profile view wrapper component (moved inside App component) to pass the mock data from one component to other.
   const ProfileViewWrapper = () => {
     const { id } = useParams<{ id: string }>();
     const [profile, setProfile] = useState<ProfileData | null>(null);
